@@ -3,6 +3,8 @@ package command
 import (
 	"flag"
 	"fmt"
+	"log"
+	"os"
 	"strings"
 
 	"github.com/mitchellh/cli"
@@ -59,7 +61,7 @@ func (c *JoinCommand) Run(args []string) int {
 	}
 	defer client.Close()
 
-	c.Ui.Error(fmt.Sprintf(">> Node isn't the first member of the cluster."))
+	log.New(os.Stdout, "", log.LstdFlags).Printf(">> Node isn't the first member of the cluster.\n")
 
 	n, err := client.Join(addrs, replayEvents)
 	if err != nil {
