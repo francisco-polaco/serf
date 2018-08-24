@@ -59,7 +59,7 @@ func (c *JoinCommand) Run(args []string) int {
 	}
 	defer client.Close()
 
-	c.Ui.Output(fmt.Sprintf(">> Node isn't the first member of the cluster."))
+	c.Ui.Error(fmt.Sprintf(">> Node isn't the first member of the cluster."))
 
 	n, err := client.Join(addrs, replayEvents)
 	if err != nil {
